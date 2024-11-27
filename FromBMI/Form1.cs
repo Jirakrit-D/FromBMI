@@ -1,4 +1,4 @@
-namespace FromBMI
+﻿namespace FromBMI
 {
     public partial class Form1 : Form
     {
@@ -12,62 +12,62 @@ namespace FromBMI
             double weight = 0;
             double height = 0;
 
-            // ��Ǩ�ͺ����ŧ��Ҩҡ textBox1 (���˹ѡ)
+            // ตรวจสอบและแปลงค่าจาก textBox1 (น้ำหนัก)
             if (!double.TryParse(textBox1.Text, out weight))
             {
                 textBox1.Text = "0";
-                MessageBox.Show("��س�����ҹ��˹ѡ���١��ͧ");
+                MessageBox.Show("กรุณาใส่ค่าน้ำหนักที่ถูกต้อง");
                 textBox1.Focus();
                 textBox1.SelectAll();
                 return;
             }
 
-            // ��Ǩ�ͺ����ŧ��Ҩҡ textBox2 (��ǹ�٧)
+            // ตรวจสอบและแปลงค่าจาก textBox2 (ส่วนสูง)
             if (!double.TryParse(textBox2.Text, out height))
             {
                 textBox2.Text = "0";
-                MessageBox.Show("��س��������ǹ�٧���١��ͧ");
+                MessageBox.Show("กรุณาใส่ค่าส่วนสูงที่ถูกต้อง");
                 textBox2.Focus();
                 textBox2.SelectAll();
                 return;
             }
 
-            // ��Ǩ�ͺ��Ҥ�� height ������ٹ�����ͤ�ҷ��������˵�����
+            // ตรวจสอบว่าค่า height ไม่เป็นศูนย์หรือค่าที่ไม่สมเหตุสมผล
             if (height <= 0)
             {
-                MessageBox.Show("��ǹ�٧��ͧ�դ���ҡ���� 0");
+                MessageBox.Show("ส่วนสูงต้องมีค่ามากกว่า 0");
                 textBox2.Focus();
                 textBox2.SelectAll();
                 return;
             }
 
-            // �ӹǳ BMI
+            // คำนวณ BMI
             double bmi = weight / Math.Pow(height / 100, 2);
 
-            // ��˹����Ѿ��
+            // กำหนดผลลัพธ์
             string result = "";
             if (bmi < 18.5)
             {
-                result = "Underweight (���)";
+                result = "Underweight (ผอม)";
             }
             else if (bmi < 25.0)
             {
-                result = "Normal weight (����)";
+                result = "Normal weight (ปกติ)";
             }
             else if (bmi < 30)
             {
-                result = "Overweight (��ǹ)";
+                result = "Overweight (อ้วน)";
             }
             else
             {
-                result = "Obesity (�ä��ǹ)";
+                result = "Obesity (โรคอ้วน)";
             }
 
-            // �ʴ����Ѿ��
+            // แสดงผลลัพธ์
             label3.Text = "Your Body Mass Index (BMI) is " + bmi.ToString("0.0");
             label4.Text = "From your BMI, you are " + result;
 
-            // ��駤�� focus ��� select ��ͤ���� textBox1
+            // ตั้งค่า focus และ select ข้อความใน textBox1
             textBox1.Focus();
             textBox1.SelectAll();
         }
@@ -80,7 +80,7 @@ namespace FromBMI
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (MessageBox.Show("��ͧ��ûԴ�������ԧ�������", "�׹�ѹ��ûԴ",
+            if (MessageBox.Show("ต้องการปิดโปรแกรมจริงหรือไม่", "ยืนยันการปิด",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
             {
                 e.Cancel = true;
